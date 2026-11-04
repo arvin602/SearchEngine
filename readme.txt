@@ -16,3 +16,10 @@ psql -d searchdb -f database/seed.sql
 psql -d searchdb -f database/queries.sql
 psql -d searchdb
 #Run the queries
+
+Schema:
+sources 1 ──< documents >── 1 categories
+                 1
+                 │
+                 *
+          document_metadata

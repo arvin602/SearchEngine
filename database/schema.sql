@@ -1,6 +1,5 @@
 -- schema.sql  |  Data Search Engine, 
 -- Run order: schema.sql -> seed.sql -> queries.sql
--- ------------------------------------------------------------
 
 DROP SCHEMA IF EXISTS search_engine CASCADE;
 CREATE SCHEMA search_engine;
@@ -8,7 +7,6 @@ SET search_path TO search_engine;
 
 
 -- sources
--- ------------------------------------------------------------
 CREATE TABLE sources (
     source_id   INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name        TEXT        NOT NULL UNIQUE,
@@ -20,8 +18,6 @@ CREATE TABLE sources (
 
 
 -- categories
--- ------------------------------------------------------------
-
 CREATE TABLE categories (
     category_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name        TEXT NOT NULL UNIQUE
@@ -29,7 +25,6 @@ CREATE TABLE categories (
 
 
 -- documents
--- ------------------------------------------------------------
 CREATE TABLE documents (
     document_id    INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     source_id      INTEGER     NOT NULL
@@ -46,7 +41,6 @@ CREATE TABLE documents (
 
 
 -- document_metadata (key/value facts about a document)
--- ------------------------------------------------------------
 CREATE TABLE document_metadata (
     metadata_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     document_id INTEGER NOT NULL
@@ -58,14 +52,12 @@ CREATE TABLE document_metadata (
 
 
 -- Indexes
--- ------------------------------------------------------------
 CREATE INDEX idx_documents_source_id  ON documents(source_id);
 CREATE INDEX idx_documents_category_id ON documents(category_id);
 CREATE INDEX idx_documents_published  ON documents(published_date);
 CREATE INDEX idx_metadata_document_id ON document_metadata(document_id);
 
 -- View (query for future API)
--- ------------------------------------------------------------
 CREATE VIEW v_document_details AS
 SELECT
     d.document_id,
