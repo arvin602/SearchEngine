@@ -20,6 +20,7 @@ def clean_record(raw, source_name):
             raise ValueError(f"bad date: {raw_date!r}")
 
     category = (raw.get("category") or "").strip() or None
+    url = (raw.get("url") or "").strip() or None
 
     # Same title + content always gives the same hash (used to spot duplicates).
     text = f"{title.lower()}|{content.lower()}"
@@ -31,5 +32,6 @@ def clean_record(raw, source_name):
         "published_date": published_date,
         "source_name": source_name,
         "category": category,
+        "url": url,
         "content_hash": content_hash,
     }
