@@ -1,13 +1,10 @@
-"""Get real data from an API and a CSV, clean it, and save it.
-
-Usage: python fetch_data.py
-"""
+"""Get real data from an API and a CSV, clean it, and save it."""
 import requests
 import pandas as pd
 
 from ingest import build_documents
 
-QUERY = "machine learning"  # change this to your own topic
+QUERY = "machine learning"  #Change to whatever
 
 
 def get_hacker_news(query):
@@ -44,8 +41,6 @@ def main():
         ("Hacker News", get_hacker_news(QUERY)),
         ("Sample CSV", get_csv("data/sample_documents.csv")),
     ]
-
-    # Clean each source with the Week 3 code, then pile it all together.
     all_documents = []
     for name, raw_records in sources:
         documents, rejected = build_documents(raw_records, name)

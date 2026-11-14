@@ -34,6 +34,7 @@ CREATE TABLE documents (
     title          TEXT        NOT NULL CHECK (length(trim(title)) > 0),
     content        TEXT,
     published_date DATE,
+    url            TEXT,
     content_hash   TEXT,
     created_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
     UNIQUE (source_id, content_hash)
