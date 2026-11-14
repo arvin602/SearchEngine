@@ -10,7 +10,6 @@ def get_connection():
     url = os.environ.get("DATABASE_URL")
     if not url:
         raise RuntimeError("DATABASE_URL is not set (copy .env.example to .env)")
-    # search_path lets us write "documents" instead of "search_engine.documents"
     return psycopg2.connect(url, options="-c search_path=search_engine")
 
 
